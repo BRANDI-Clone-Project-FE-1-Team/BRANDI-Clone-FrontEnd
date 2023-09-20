@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import Banners from '../../components/Banners/Banners';
 import Card from './../../components/ui/Card/Card';
 import './MainPage.css';
 import { useState } from 'react';
@@ -112,12 +111,10 @@ const MainPage = () => {
   const nextButtonHandler = () => {
     setPage((prev) => prev + 1);
   };
-  if (page === 1) {
-  }
+
   return (
     <>
       <div>MainPage</div>
-      <Banners />
       <div className="section">
         <h2 className="section-title">오늘은 이 상품 어때요?</h2>
         <div className="section-pagination">
