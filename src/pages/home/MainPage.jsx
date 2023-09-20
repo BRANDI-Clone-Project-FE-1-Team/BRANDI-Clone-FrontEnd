@@ -97,7 +97,7 @@ const MainPage = () => {
     return (
       <Card
         title={product.title}
-        compnay={product.compnay}
+        company={product.compnay}
         dc={product.dc}
         price={product.price}
         img={product.img}

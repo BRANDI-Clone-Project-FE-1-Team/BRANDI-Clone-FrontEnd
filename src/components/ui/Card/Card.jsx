@@ -73,6 +73,7 @@ const ProductTitle = styled.p`
   height: 1.1rem;
 `;
 const CompanyName = styled.p`
+  height: 1.1rem;
   color: #808893;
   font-size: 0.8rem;
 `;
