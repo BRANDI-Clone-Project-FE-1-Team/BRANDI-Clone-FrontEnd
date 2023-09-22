@@ -1,15 +1,14 @@
-import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import styled from "styled-components";
-import Images from "@components/Images";
-import Bigimg from "../images/Bigimg01.jpeg";
-import Bigimg02 from "../images/Bigimg02.jpeg";
-import Bigimg03 from "../images/Bigimg03.jpeg";
-import Bigimg04 from "../images/Bigimg04.jpeg";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import styled from 'styled-components';
+import Images from '@components/Images';
+import Bigimg from '../images/Bigimg01.jpeg';
+import Bigimg02 from '../images/Bigimg02.jpeg';
+import Bigimg03 from '../images/Bigimg03.jpeg';
+import Bigimg04 from '../images/Bigimg04.jpeg';
 
-const DetailPicture = () => {
+const DetailPicture = ({productImg }) => {
   const sliderSettings = {
     dots: true, // 점(도트) 표시 여부
     arrows: false,
@@ -17,26 +16,28 @@ const DetailPicture = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
   };
 
   return (
-    <PictureContents>
+    <PictureContents defaultImg={productImg} >
       <div>
         <Slider {...sliderSettings}>
           <div>
-            <Images imgSrc={Bigimg} />
+            <Images imgSrc={productImg[0]} />
           </div>
 
           <div>
-            <Images imgSrc={Bigimg02} />
+            <Images imgSrc={productImg[1]} />
           </div>
 
           <div>
-            <Images imgSrc={Bigimg03} />
+            <Images imgSrc={productImg[2]} />
           </div>
 
           <div>
-            <Images imgSrc={Bigimg04} />
+            <Images imgSrc={productImg[3]} />
           </div>
         </Slider>
       </div>
@@ -51,10 +52,15 @@ const PictureContents = styled.div`
   img {
     width: 100%;
   }
+  @media all and (max-width: 768px) {
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
 
   .slick-slider .slick-track,
   .slick-slider .slick-list {
-    height: 500px;
+    height: auto;
   }
 
   .slick-slide img {
@@ -85,24 +91,23 @@ const PictureContents = styled.div`
     width: 100px;
     height: 100px;
     background-size: 100px !important;
-    background: url(${Bigimg});
+    background: url(${(props) => props.defaultImg});
     font-size: 0px;
     opacity: 0.35;
   }
+  ${(props) =>
+    props.defaultImg &&
+    props.defaultImg
+      .map(
+        (img, index) => `
+    .slick-dots li:nth-child(${index + 1}) button:before {
+      background: url(${img});
+    }
+  `
+      )
+      .join('')}
 
   .slick-dots li.slick-active button:before {
     opacity: 0.95;
-  }
-
-  .slick-dots li:nth-child(2) button:before {
-    background: url(${Bigimg02});
-  }
-
-  .slick-dots li:nth-child(3) button:before {
-    background: url(${Bigimg03});
-  }
-
-  .slick-dots li:nth-child(4) button:before {
-    background: url(${Bigimg04});
   }
 `;
